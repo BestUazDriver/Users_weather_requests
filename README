@@ -1,0 +1,9 @@
+to start app:
+1) go to src/main/java/com/sabitov/SpringApp.java, press start button
+2) open browser and find url http://localhost:8081/hello/delete_survey
+Here you can test some methods
+3) to open swagger documentation find url http://localhost:8081/swagger-ui.html
+
+problems:
+liquibase works not as it needs to work,
+i'm bad as front, so main page can exist errors
