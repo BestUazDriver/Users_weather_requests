@@ -5,6 +5,7 @@ import com.sabitov.repository.SurveyRepository;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +51,7 @@ public class SurveyController {
         try {
             long l = Long.parseLong(deleteId);
             surveyRepository.deleteById(l);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | EmptyResultDataAccessException  e) {
             System.out.println("null");
         }
         return "hello";
@@ -63,25 +64,28 @@ public class SurveyController {
     }
 
 
-//    @PutMapping
-//    @ApiOperation("Update survey")
-//    public String updateSurvey(@RequestParam Long id, @RequestParam String name, @RequestParam String start_date, @RequestParam String end_date, @RequestParam String is_active) {
-//        LocalDate localStartDate = new SurveyController().localDate(start_date);
-//        LocalDate localEndDate = new SurveyController().localDate(end_date);
-//        Survey survey = Survey.builder().
-//                id(id).
-//                name(name).
-//                startDate(localStartDate).
-//                endDate(localEndDate).
-//                isActive(Boolean.parseBoolean(is_active)).
-//                build();
-//
-//
-//        Survey oldSurvey = surveyRepository.findById(id).get();
-//        surveyRepository.delete(oldSurvey);
-//        surveyRepository.save(survey);
-//        return "hello";
-//    }
+    @PutMapping
+    @ApiOperation("Update survey")
+    public String updateSurvey(@RequestParam Long id, @RequestParam String name, @RequestParam String start_date, @RequestParam String end_date, @RequestParam String is_active) {
+        LocalDate localStartDate = new SurveyController().localDate(start_date);
+        LocalDate localEndDate = new SurveyController().localDate(end_date);
+        Survey survey = Survey.builder().
+                id(id).
+                name(name).
+                startDate(localStartDate).
+                endDate(localEndDate).
+                isActive(Boolean.parseBoolean(is_active)).
+                build();
+
+        try {
+            Survey oldSurvey = surveyRepository.findById(id).get();
+            surveyRepository.delete(oldSurvey);
+            surveyRepository.save(survey);
+        }catch(EmptyResultDataAccessException e){
+
+        }
+        return "hello";
+    }
 
     private LocalDate localDate(String stringDate) {
         String[] attributes = stringDate.split("-");
