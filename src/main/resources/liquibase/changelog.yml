@@ -1,0 +1,68 @@
+databaseChangeLog:
+  - changeset:
+      id: DEV-1
+      author: postgres
+      changes:
+        - createTable:
+            tableName: survey
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  primaryKey: true
+              - column:
+                  name: name
+                  type: varchar(20)
+              - column:
+                  name: start_date
+                  type: date
+              - column:
+                  name: end_date
+                  type: date
+              - column:
+                  name: is_active
+                  type: boolean
+                  defaultValue: false
+  - changeset2:
+     id: DEV-2
+     author: postgres
+     changes:
+        - createTable:
+            tableName: survey_question
+            columns:
+              - column:
+                  name: id
+                  type: integer
+                  autoIncrement: true
+                  primaryKey: true
+              - column:
+                  name: survey_id
+                  type: long
+              - column:
+                  name: question
+                  type: varchar(100)
+
+  - changeset3:
+      id: DEV-3
+      author: postgres
+      changes:
+        - insert:
+            tableName: survey
+            columns:
+              - column:
+                  name: name
+                  value: "first survey"
+              - column:
+                  name: start_date
+                  value: "2021-10-10"
+              - column:
+                  name: end_date
+                  value: "2021-11-10"
+              - column:
+                  name: is_active
+                  value: "true"
+
+
+
+

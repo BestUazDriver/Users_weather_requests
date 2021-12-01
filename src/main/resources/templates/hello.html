@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Surveys page</title>
+</head>
+<body>
+<h1>AccountsPage</h1>
+<h2 th:text="'Hello '+${text}+'!'"></h2>
+<br>
+<br>
+<br>
+<form action="/hello/add_survey" method="post">
+    Name <input type="text" name="name"><br>
+    start date <input type="date" name="start_date"><br>
+    end date <input name="end_date" type="date"><br>
+    ia active? <input name="is_active" type="checkbox"><br>
+    <input type="submit" value="create survey">
+</form>
+
+<form action="/hello/delete_survey" method="post">
+    <h2>Choose survey u want to delete</h2>
+    <select name="deleteId" th:each="survey : ${surveys}">
+
+        <option type="text" value="1">1</option>
+
+    </select>
+    <input type="submit" value="delete">
+</form>
+<table style="background-color: aquamarine" th:each="survey : ${surveys}">
+    <tr>
+        <th>Id</th>
+        <th>name</th>
+        <th>start_date</th>
+        <th>end_date</th>
+        <th>is_active</th>
+    </tr>
+
+    <tr>
+        <td th:utext="${survey.getId()}"></td>
+        <td th:utext="${survey.getName()}"></td>
+        <td th:utext="${survey.getStartDate()}"></td>
+        <td th:utext="${survey.getEndDate()}"></td>
+        <td th:utext="${survey.isActive()}"></td>
+    </tr>
+</table>
+
+
+</body>
+</html>
