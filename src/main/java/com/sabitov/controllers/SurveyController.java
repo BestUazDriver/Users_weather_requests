@@ -2,7 +2,6 @@ package com.sabitov.controllers;
 
 import com.sabitov.models.Survey;
 import com.sabitov.repository.SurveyRepository;
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -16,7 +15,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/hello")
-@Api(description = "Survey controller")
 public class SurveyController {
     @Autowired
     private SurveyRepository surveyRepository;
