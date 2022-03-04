@@ -1,6 +1,0 @@
-com\sabitov\repository\SurveyQuestionRepository.class
-com\sabitov\SpringApp.class
-com\sabitov\models\SurveyQuestion.class
-com\sabitov\models\Survey.class
-com\sabitov\repository\SurveyRepository.class
-com\sabitov\controllers\SurveyController.class
